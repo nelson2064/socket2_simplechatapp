@@ -26,11 +26,12 @@
 <div class="center-container">
   <form>
     <div class="form-group">
-     
       <input type="text" class="form-control" id="inputField" placeholder="Enter something...">
     </div>
-    <button  onclick="sendMsg()" "submit" class="btn btn-primary">Submit</button>
+    <button type="button" onclick="sendMsg()" class="btn btn-primary">Submit</button>
   </form>
+
+  <ul id="msgHis"></ul>
 </div>
 
 <!-- Bootstrap JS and Popper.js (Optional, for Bootstrap features) -->
@@ -41,14 +42,19 @@
 <script>
     let socket = io();
 
-
-    function sendMsg(){
-        let msg = document.getElementById("inputField").value;;
-        // alert(msg);
-        socket.emit('chat',msg);
+    function sendMsg() {
+        let msg = document.getElementById("inputField").value;
+        socket.emit('chat', msg);
+        
+       document.getElementById("inputField").value = " ";
     }
 
-
+    socket.on('chat_send', function(msg) {
+        let listItem = document.createElement('li');
+        listItem.textContent = msg;
+        let rootUl = document.getElementById("msgHis");
+        rootUl.appendChild(listItem);
+    });
 </script>
 </body>
 </html>
