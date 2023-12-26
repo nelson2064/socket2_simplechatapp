@@ -44,7 +44,8 @@
 
     function sendMsg(){
         let msg = document.getElementById("inputField").value;;
-        alert(msg);
+        // alert(msg);
+        socket.emit('chat',msg);
     }
 
 

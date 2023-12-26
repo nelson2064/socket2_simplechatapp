@@ -11,7 +11,10 @@ const io = new Server(server);
 
 
 io.on('connection',function(socket){
-    console.log("New user connected")
+   
+    socket.on('chat',function(msg){
+      console.log(msg)
+    })
 })
 
 app.get('/', (req, res) => {
