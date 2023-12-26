@@ -23,7 +23,7 @@
 </head>
 <body>
 
-<div class="center-container">
+<!-- <div class="center-container">
   <form>
     <div class="form-group">
       <input type="text" class="form-control" id="inputField" placeholder="Enter something...">
@@ -32,7 +32,9 @@
   </form>
 
   <ul id="msgHis"></ul>
-</div>
+</div> -->
+
+<p id="msg"></p>
 
 <!-- Bootstrap JS and Popper.js (Optional, for Bootstrap features) -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -42,19 +44,25 @@
 <script>
     let socket = io();
 
-    function sendMsg() {
-        let msg = document.getElementById("inputField").value;
-        socket.emit('chat', msg);
+    // function sendMsg() {
+    //     let msg = document.getElementById("inputField").value;
+    //     socket.emit('chat', msg);
         
-       document.getElementById("inputField").value = " ";
-    }
+    //    document.getElementById("inputField").value = " ";
+    // }
 
-    socket.on('chat_send', function(msg) {
-        let listItem = document.createElement('li');
-        listItem.textContent = msg;
-        let rootUl = document.getElementById("msgHis");
-        rootUl.appendChild(listItem);
-    });
+    // socket.on('chat_send', function(msg) {
+    //     let listItem = document.createElement('li');
+    //     listItem.textContent = msg;
+    //     let rootUl = document.getElementById("msgHis");
+    //     rootUl.appendChild(listItem);
+    // });
+
+
+
+    socket.on('cooking',function(data){
+        document.getElementById('msg').innerHTML = data;
+    })
 </script>
 </body>
 </html>
